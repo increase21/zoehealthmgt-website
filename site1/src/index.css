@@ -576,6 +576,12 @@ section {
   margin-bottom: 1.4rem;
 }
 
+.contact-wrap p.form-status {
+  color: green;
+  margin-bottom: 1.4rem;
+  text-align: center;
+}
+
 .contact-info li {
   display: flex;
   align-items: start;

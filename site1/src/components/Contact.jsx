@@ -2,13 +2,28 @@ import { useState } from 'react'
 
 export default function Contact() {
   const [status, setStatus] = useState('')
+  const [submitting, setSubmitting] = useState(false)
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
-    const data = Object.fromEntries(new FormData(e.currentTarget).entries())
-    console.log('Contact submission:', data)
-    setStatus('Thank you — we will be in touch shortly.')
-    e.currentTarget.reset()
+    const form = e.currentTarget
+    const endpoint = "https://script.google.com/macros/s/AKfycbw-L6yQK5FvOFGLkR9hhkxAQF5F71PTRq061hw3wW5UUSWd44uRujOJzOiwkSCZgYjVPw/exec" //import.meta.env.VITE_CONTACT_ENDPOINT
+    if (!endpoint) {
+      setStatus('Contact form is not configured. Please email care@zoehealthmanagement.com.')
+      return
+    }
+    setSubmitting(true)
+    setStatus('')
+    try {
+      const res = await fetch(endpoint, { method: 'POST', body: new FormData(form) })
+      if (!res.ok) throw new Error('Request failed')
+      setStatus('Thank you — we will be in touch shortly.')
+      form.reset()
+    } catch {
+      setStatus('Something went wrong. Please try again or email care@zoehealthmanagement.com.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -45,7 +60,7 @@ export default function Contact() {
             <input id="company" name="company" type="text" autoComplete="organization" />
             <label htmlFor="message">How can we help?</label>
             <textarea id="message" name="message" rows="4" />
-            <button type="submit">Send Message</button>
+            <button type="submit" disabled={submitting}>{submitting ? 'Sending…' : 'Send Message'}</button>
             {status && <p className="form-status" role="status">{status}</p>}
           </form>
           <aside>
