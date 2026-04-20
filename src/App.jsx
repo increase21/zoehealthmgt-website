@@ -15,7 +15,7 @@ export default function App() {
           name="description"
           content="Zoe Health Management Systems provides fully coordinated medical travel, treatment, and recovery — from the first consultation to complete recovery. Serving patients across Washington DC, Maryland and Virginia."
         />
-        <link rel="canonical" href="https://www.zoehealthmanagement.com/" />
+        <link rel="canonical" href="https://www.zoehealthmgmt.com/" />
       </Helmet>
       <a href="#main" className="skip-link" style={{ position: 'absolute', left: '-9999px' }}>
         Skip to content

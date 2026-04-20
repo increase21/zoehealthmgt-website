@@ -9,7 +9,7 @@ export default function Contact() {
     const form = e.currentTarget
     const endpoint = "https://script.google.com/macros/s/AKfycbw-L6yQK5FvOFGLkR9hhkxAQF5F71PTRq061hw3wW5UUSWd44uRujOJzOiwkSCZgYjVPw/exec" //import.meta.env.VITE_CONTACT_ENDPOINT
     if (!endpoint) {
-      setStatus('Contact form is not configured. Please email care@zoehealthmanagement.com.')
+      setStatus('Contact form is not configured. Please email info@zoehealthmgmt.com.')
       return
     }
     setSubmitting(true)
@@ -20,7 +20,7 @@ export default function Contact() {
       setStatus('Thank you — we will be in touch shortly.')
       form.reset()
     } catch {
-      setStatus('Something went wrong. Please try again or email care@zoehealthmanagement.com.')
+      setStatus('Something went wrong. Please try again or email info@zoehealthmgmt.com.')
     } finally {
       setSubmitting(false)
     }
@@ -81,7 +81,7 @@ export default function Contact() {
                 <span aria-hidden="true">✉️</span>
                 <div>
                   <strong>Email</strong>
-                  care@zoehealthmanagement.com
+                  info@zoehealthmgmt.com
                 </div>
               </li>
               <li>
